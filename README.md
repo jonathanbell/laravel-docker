@@ -14,8 +14,11 @@ Here's an example of Laravel running inside Docker with:
 - `composer` installed
 - Docker installed and running
 - Nothing already running on port 443 or port 3307 on your localhost
+- The Xdebug browser extension installed
 
 ## Installation
+
+Instructions are for the Mac OS.
 
 1. Clone this repository: `git clone git@github.com:jonathanbell/laravel-docker.git`
 1. `cd` into the `laravel-docker` project directory
@@ -25,13 +28,26 @@ Here's an example of Laravel running inside Docker with:
 1. `docker-compose build` (Docker will complain about a few non-important things such as the `ServerName` domain name not being set)
 1. `docker-compose up`
 1. Open a new tab in your shell and `cd` to the project root - you can now run your development commands (such as `php artisan`) from here (see below)
-1. `docker-compose exec laravel php artisan migrate` to migrate your database and confirm connectivity with your Docker database (`laravel-db`)
+1. In the new tab: `docker-compose exec laravel php artisan migrate` in order to migrate your database and confirm connectivity with your Docker database (`laravel-db`)
+1. (optional) `rm -rf ./.git` in order to remove the laravel-docker repository - you can now initialize a new Git repository inside the `laravel` folder
 
-Great, from now on **to run the application**, just use `docker-compose up`
+Great, from now on **to run the application**, just use: `docker-compose up`
 
-### PHPStorm Setup (XDebug)
+You can now visit: <https://localhost> (accept the security warning)
 
-1.
+To kill the application, just press `cntrl + C` from the tab running the Docker containers.
+
+### Setup PHPStorm (XDebug)
+
+1. Open the `laravel` folder in PHPStorm
+1. Go to: `Preferences -> Languages & Frameworks -> PHP` and set a new CLI Interpreter using `From Docker, Vagrant...`
+1. Choose the `Docker` from the radio buttons
+1. Select `New...` and configure a new Docker server
+1. Choose `Connect to Docker daemon` with `Docker for Mac`
+1. PHPStorm checks the PHP installation on Docker and finds the debugger
+1. Enable the Xdebug browser extension and visit <https://localhost>
+1. The first time you attempt to connect PHPStorm and Xdebug you will be asked to map the project to the server path - the defaults should workout just fine (just click OK)
+1. You've got debugging working in PHPStorm via Docker!
 
 ### Logs
 
