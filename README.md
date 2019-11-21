@@ -17,7 +17,7 @@ Here's an example of Laravel running inside Docker with:
 
 ## Installation
 
-1. Clone this repository
+1. Clone this repository: `git clone git@github.com:jonathanbell/laravel-docker.git`
 1. `cd` into the `laravel-docker` project directory
 1. `composer create-project --prefer-dist laravel/laravel`
 1. `sed -i -e 's!DB_PASSWORD=!DB_PASSWORD=laravel!g' ./laravel/.env && sed -i -e 's!DB_HOST=127.0.0.1!DB_HOST=laravel-db!g' ./laravel/.env && rm ./laravel/.env-e`
