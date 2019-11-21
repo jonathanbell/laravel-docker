@@ -6,19 +6,19 @@ Here's an example of Laravel running inside Docker with:
 
 - SSL (locally)
 - XDebug
-- MySQL database files left outside of the container (in order to persist data)
+- MySQL database files left outside of the container (in order to persist data when the container is shutdown)
 - PHPUnit???
 
 ## Requirements
 
 - `composer` installed
-- Docker installed
+- Docker installed and running
 - Nothing already running on port 443 or port 3307 on your localhost
 
 ## Installation
 
 1. Clone this repository
-1. `cd` into the `laravel-docker` directory
+1. `cd` into the `laravel-docker` project directory
 1. `composer create-project --prefer-dist laravel/laravel`
 1. `sed -i -e 's!DB_PASSWORD=!DB_PASSWORD=laravel!g' ./laravel/.env && sed -i -e 's!DB_HOST=127.0.0.1!DB_HOST=laravel-db!g' ./laravel/.env && rm ./laravel/.env-e`
 1. If it's not already running, start Docker
@@ -47,8 +47,4 @@ You can either run the commands directly from the host command line, or you can 
 
 To run from the host: `docker-compose exec laravel <shell command to run here>`
 
-Or, SSH to your Laravel container: `docker exec -u 0 -it laravel bash` and run all the commands your heart desires.
-
----
-
-In order to SSH to the database container, use: `docker exec -u 0 -it laravel-db bash`
+Or, SSH to your Laravel container (as root): `docker exec -u 0 -it laravel bash` and run all the commands your heart desires there.
